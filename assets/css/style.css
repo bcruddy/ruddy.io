@@ -1,0 +1,46 @@
+html { font-size: 14px; }
+body { font-family: 'Open Sans', sans-serif; font-size: 100%; color: #CCC; background-color: #333; }
+
+.jumbotron { background-color: #303030; }
+.jumbotron h1 { margin-bottom: 20px; }
+p.lead { font-weight: 300; font-style: italic; }
+a { color: #FFF; }
+a:hover, a:active, a:focus { color: #EFEFEF; }
+a:visited { color: #EEE;  }
+h3 small, h4 small { margin-left: 25px; }
+
+footer { padding-top: 20px; padding-bottom: 20px; }
+footer .social-icons a { margin-left: 5px; margin-right: 5px; color: #CCC; }
+footer .social-icons a:hover { color: #AAA; text-shadow: 0 0 1px #CCC; }
+
+label { font-size: 12px; font-weight: 300; }
+label i { margin-left: 6px; }
+.btn i { margin-right: 6px; }
+.navbar.navbar-default { border-radius: 0; margin-bottom: 0; }
+.navbar.navbar-default .navbar-brand { padding: 5px 15px; }
+.navbar.navbar-default .navbar-brand > img { height: 40px; }
+
+.cbox { background-color: #EFEFEF; color: #333; border: #000; border-radius: 6px;  }
+.cbox .cbox-header,
+.cbox .cbox-footer { padding: 10px 15px; }
+.cbox .cbox-content { padding: 5px 20px 10px; }
+.cbox .cbox-header { border-bottom: thin solid #CCC; margin-bottom: 5px; }
+.cbox .cbox-footer { border-top: thin solid #CCC; margin-top: 5px; }
+
+
+#footer { padding-top: 30px; padding-bottom: 30px; }
+#footer a { color: #333; }
+#footer a:hover { color: #555; }
+
+.margin10 { margin-bottom: 10px; }
+.margin20 { margin-bottom: 20px; }
+.margin30 { margin-bottom: 30px; }
+.margin40 { margin-bottom: 40px; }
+.margin50 { margin-bottom: 50px; }
+.margin60 { margin-bottom: 60px; }
+.margin70 { margin-bottom: 70px; }
+.margin80 { margin-bottom: 80px; }
+
+@media only screen and (max-device-width : 580px) {
+    h3 small, h4 small { margin-left: 0; display: block; }
+}

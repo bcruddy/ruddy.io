@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+if [ -d "./assets/bundles" ]; then
+    rm -rf ./assets/bundles
+fi
+
+# make out dir
+mkdir ./assets/bundles
+
+# app js
+touch ./assets/bundles/app.js
+uglifyjs ./assets/js/global.js \
+       > ./assets/bundles/app.js
+
+# app css
+touch ./assets/bundles/app.css
+uglifycss --ugly-comments \
+          ./assets/css/bootstrap.css \
+          ./assets/css/font-awesome.css \
+          ./assets/css/style.css \
+        > ./assets/bundles/app.css
