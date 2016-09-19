@@ -119,7 +119,8 @@
                 <p>
                     My role at Photofy has expanded greatly over the last two years and now encompasses complete autonomy
                     over the Photofy Designer web app, Photofy Stream Widget, Photofy marketing website, and newsletter infrastructure as well as a primary role
-                    building out and maintaining the Photofy User Portal and the internal admin project.
+                    building out and maintaining the Photofy User Portal and the internal admin project. These projects are running behind IIS on Windows Server on AWS
+                    unless otherwise noted.
                 </p>
                 <p>
                     The Photofy Designer web app is the web-based implementation of Photofy. Consuming a RESTful API, the Designer
@@ -129,11 +130,11 @@
                 <p>
                     The Photofy Stream Widget is a 100% stateless, token-based tool built on NodeJS with Express. Allows users/brands to generate
                     iframe code or consume JSON data directly in order to display their Photofy stream. Also responsible for managing
-                    the Red Hat Enterprise Linux server it runs on.
+                    the Red Hat Enterprise Linux server it runs on behind an Apache web server on AWS.
                 </p>
                 <p>
-                    The newsletter platform is a Sendy implementation, built with PHP and MySQL running on Red Hat Enterprise Linux.
-                    Responsible for server setup, deployment, maintainance and extending Sendy's functionality to integrate with our existing user base,
+                    The newsletter platform is a Sendy implementation, built with PHP and MySQL running on Red Hat Enterprise Linux behind an Apache web server on AWS.
+                    Responsible for server setup, deployment, maintenance and extending Sendy's functionality to integrate with our existing user base,
                     consisting of millions of accounts, all while keeping the two systems in sync.
                 </p>
                 <p>
@@ -150,8 +151,9 @@
                 <h3>Ruddy Labs<small><em>August 2012 - Current</em></small></h3>
                 <h4>Founder, Developer</h4>
                 <p>
-                    What started as building a website for a friend's band while taking an intro to CS class in college
-                    has since grown into a recurring project stream.
+                    What started as building a simple HTML/CSS website for a friend's band while taking an intro to CS class in college
+                    has since grown into a recurring project stream. Associated projects are all run on AWS and are built with either C#/.NET
+                    or NodeJS with Express. Node projects run on Ubuntu Linux behind Apache and C#/.NET projects run on Windows Server behind IIS.
                 </p>
             </div>
         </div>
@@ -184,7 +186,7 @@
                     <a href="https://goatattack.com" target="_blank">Goat Attack</a> is a web-based prank application for spamming your friends'
                     phones with a random selection of goat pictures and goat related puns. It's just as silly as it sounds.
                     Goat Attack is a collection of .NET projects relying on Twilio's API to process payments and Braintree's API
-                    to send the MMS messages.
+                    to send the MMS messages. This project is running behind IIS on Windows Server on Google Cloud Platform.
                 </p>
             </div>
         </div>
@@ -192,10 +194,11 @@
             <div class="col-md-12">
                 <h3>Gram Like Cam<small><em>August 2016 - Current</em></small></h3>
                 <p>
-                    <a href="https://gramlikecam.com" target="_blank">Gram Like Cam</a> is a web-based application for translating English
+                    <a href="https://gramlikecam.com" target="_blank">Gram Like Cam</a> is a web-based NodeJS / Express application for translating English
                     into whatever hieroglyphics Cam Newton uses in his <a href="https://www.instagram.com/cameron1newton/" target="_blank" rel="nofollow">Instagram captions</a>.
                     This was initially inspired to translate Cam's captions from the symbols he uses into plain English,
-                    but this way was more fun. This project is <a href="https://github.com/bcruddy/gramlikecam" target="_blank">open source</a>.
+                    but this way was more fun. This project is <a href="https://github.com/bcruddy/gramlikecam" target="_blank">open source</a> and running
+                    behind an Apache reverse proxy on an Ubuntu Linux server on AWS secured with Let's Encrypt.
                 </p>
             </div>
         </div>
@@ -207,7 +210,19 @@
                     twitter accounts. What started as an experiment with nodejs to tweet funny content from reddit has become a tool for maintaining
                     followers on several twitter accounts including the original <a href="https://twitter.com/badatmyjob" target="_blank">@badatmyjob</a>
                     account as well as the <a href="https://twitter.com/oakcityshuttle" target="_blank">@oakcityshuttle</a> account and many more from a single
-                    small AWS instance, running as a node script in a cronjob. This project is <a href="https://github.com/bcruddy/twitter-bot" target="_blank">open source</a>.
+                    small Ubuntu AWS instance, running as a NodeJS script in a cronjob. This project is <a href="https://github.com/bcruddy/twitter-bot" target="_blank">open source</a>.
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>font-inject<small><em>March 2016 - Current</em></small></h3>
+                <p>
+                    <a href="https://github.com/bcruddy/font-inject.js" target="_blank">font-inject</a> is a typescript library developed with the Photofy Designer web app in mind.
+                    Loading hundreds of fonts via CSS imports and keeping everything updated was becoming cumbersome as the designers were constantly adding fonts to the library.
+                    I also didn't want to request all of them on page load and slow down load times and in turn affect performance relative to the user.
+                    This is my solution - it injects the fonts as "native" CSS without the use of an external stylesheet (one less request to make),
+                    making all fonts available on demand. This project is <a href="https://github.com/bcruddy/font-inject.js" target="_blank">open source</a>.
                 </p>
             </div>
         </div>
