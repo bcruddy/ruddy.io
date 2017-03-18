@@ -1,40 +1,23 @@
 'use strict';
 
-const express = require('express');
-const path = require('path');
-const favicon = require('serve-favicon');
-const logger = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const hbs = require('express-hbs');
-const helmet = require('helmet');
+const express = require('express'),
+    hbs = require('express-hbs'),
+    helmet = require('helmet'),
+    path = require('path'),
+    rootController = require('./controllers/root'),
+    app = express();
 
-const rootController = require('./controllers/root');
-
-const app = express();
-
-app.use(helmet());
-
-// view engine setup
-app.engine('hbs', hbs.express4({
+app
+.use(helmet())
+.engine('hbs', hbs.express4({
     defaultLayout: path.join(__dirname, 'views/shared/_layout.hbs'),
     partialsDir: path.join(__dirname, 'views/shared')
-}));
-app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'views'));
-
-
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-
-app.use(express.static(path.join(__dirname, 'assets')));
-
-app.use('/', rootController);
-
-// catch 404 and forward to error handler
-app.use((req, res, next) => {
+}))
+.set('view engine', 'hbs')
+.set('views', path.join(__dirname, 'views'))
+.use(express.static(path.join(__dirname, 'assets')))
+.use('/', rootController)
+.use((req, res, next) => {
     let err = new Error('Not Found');
     err.status = 404;
     next(err);
@@ -58,7 +41,7 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
     let view = err.status === 404 ? 'shared/404' : 'shared/error';
     res.status(err.status || 500);
     res.render(view, {

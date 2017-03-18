@@ -1,28 +1,26 @@
 'use strict';
 
-const express = require('express');
-const router = express.Router();
+const express = require('express'),
+    router = express.Router();
 
 class RootController {
-    constructor() {}
+    constructor () {}
 
-    index(req, res) {
-        let isPartial = req.query['isPartial'];
+    index (req, res) {
+        let {isPartial} = req.query,
+            layout = !isPartial ? 'shared/_layout' : false;
 
-        return res.render('root/index', { title: 'Welcome', layout: !isPartial ? 'shared/_layout' : false });
+        return res.render('root/index', { title: 'Welcome', layout});
     }
 
-    about(req, res) {
+    about (req, res) {
         return res.render('root/about', { layout: false });
     }
 }
 
-
-
-// routes
 const root = new RootController();
+
 router.get('/', root.index);
 router.get('/about', root.about);
-
 
 module.exports = router;
