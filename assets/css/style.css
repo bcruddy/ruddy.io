@@ -41,6 +41,6 @@ label i { margin-left: 6px; }
 .margin70 { margin-bottom: 70px; }
 .margin80 { margin-bottom: 80px; }
 
-@media only screen and (max-device-width : 580px) {
+@media only screen and (max-device-width : 768px) {
     h3 small, h4 small { margin-left: 0; display: block; }
 }
