@@ -1,7 +1,6 @@
-'use strict';
-
 const express = require('express'),
-    router = express.Router();
+    router = express.Router(),
+    fs = require('fs');
 
 class RootController {
     constructor () {}
@@ -10,11 +9,11 @@ class RootController {
         let {isPartial} = req.query,
             layout = !isPartial ? 'shared/_layout' : false;
 
-        return res.render('root/index', { title: 'Welcome', layout});
+        return res.render('root/index', {title: 'Welcome', layout});
     }
 
     about (req, res) {
-        return res.render('root/about', { layout: false });
+        return res.render('root/about', {layout: false});
     }
 }
 

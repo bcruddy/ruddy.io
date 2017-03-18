@@ -1,9 +1,8 @@
-'use strict';
-
 const express = require('express'),
     hbs = require('express-hbs'),
     helmet = require('helmet'),
     path = require('path'),
+    blogController = require('./controllers/blog'),
     rootController = require('./controllers/root'),
     app = express();
 
@@ -16,7 +15,9 @@ app
 .set('view engine', 'hbs')
 .set('views', path.join(__dirname, 'views'))
 .use(express.static(path.join(__dirname, 'assets')))
+.use('/blog', blogController)
 .use('/', rootController)
+
 .use((req, res, next) => {
     let err = new Error('Not Found');
     err.status = 404;
