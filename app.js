@@ -4,11 +4,13 @@ const express = require('express'),
     hbs = require('express-hbs'),
     helmet = require('helmet'),
     path = require('path'),
+    noSlash = require('no-slash'),
     rootController = require('./controllers/root'),
     app = express();
 
 app
 .use(helmet())
+.use(noSlash())
 .engine('hbs', hbs.express4({
     defaultLayout: path.join(__dirname, 'views/shared/_layout.hbs'),
     partialsDir: path.join(__dirname, 'views/shared')

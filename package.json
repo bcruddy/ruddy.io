@@ -1,21 +1,22 @@
 {
-    "name": "bcr-web",
-    "version": "0.0.1",
-    "private": true,
-    "scripts": {
+  "name": "bcr-web",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
     "start": "nodemon ./bin/bcr-web --ignore ./assets/",
     "bundle": "mkdir -p ./assets/bundles && npm run bundle:js && npm run bundle:css",
     "bundle:js": "uglifyjs ./assets/js/* -m -o ./assets/bundles/app.js",
     "bundle:css": "uglifycss ./assets/css/* > ./assets/bundles/app.css"
-    },
-    "dependencies": {
-        "express": "~4.13.4",
-        "express-hbs": "^1.0.2",
-        "helmet": "^2.1.3"
-    },
-    "devDependencies": {
-        "nodemon": "^1.10.0",
-        "uglify-js": "^2.8.13",
-        "uglifycss": "0.0.25"
-    }
+  },
+  "dependencies": {
+    "express": "~4.13.4",
+    "express-hbs": "^1.0.2",
+    "helmet": "^2.1.3",
+    "no-slash": "^1.2.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.10.0",
+    "uglify-js": "^2.8.13",
+    "uglifycss": "0.0.25"
+  }
 }
