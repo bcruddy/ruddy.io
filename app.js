@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express'),
+    urlCleaner = require('express-url-cleaner'),
     hbs = require('express-hbs'),
     helmet = require('helmet'),
     path = require('path'),
@@ -10,6 +11,7 @@ const express = require('express'),
 
 app
 .use(helmet())
+.use(urlCleaner())
 .use(noSlash())
 .engine('hbs', hbs.express4({
     defaultLayout: path.join(__dirname, 'views/shared/_layout.hbs'),

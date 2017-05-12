@@ -11,6 +11,7 @@
   "dependencies": {
     "express": "~4.13.4",
     "express-hbs": "^1.0.2",
+    "express-url-cleaner": "^0.0.2",
     "helmet": "^2.1.3",
     "no-slash": "^1.2.3"
   },
