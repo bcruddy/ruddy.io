@@ -5,7 +5,8 @@
   "scripts": {
     "start": "nodemon ./bin/bcr-web --ignore ./assets/",
     "bundle": "mkdir -p ./assets/bundles && npm run bundle:js && npm run bundle:css",
-    "bundle:js": "uglifyjs ./assets/js/* -m -o ./assets/bundles/app.js",
+    "bundle:js": "babel assets/js --out-file assets/bundles/app.js --source-maps inline",
+    "bundle:js2": "uglifyjs ./assets/js/* -m -o ./assets/bundles/app.js",
     "bundle:css": "uglifycss ./assets/css/* > ./assets/bundles/app.css"
   },
   "dependencies": {
@@ -16,6 +17,8 @@
     "no-slash": "^1.2.3"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
     "nodemon": "^1.10.0",
     "uglify-js": "^2.8.13",
     "uglifycss": "0.0.25"

@@ -31,16 +31,16 @@ function noop() {}
 
 HTMLElement.prototype.on = HTMLElement.prototype.addEventListener;
 
-var bcr = window.bcr || {};
+let bcr = window.bcr || {};
 bcr = {
     debug: true,
-    log: function () {
+    log () {
         if (this.debug && window.console && window.log) {
             console.log(arguments);
         }
     },
 
-    init: function () {
+    init () {
         bcr.events.global();
         bcr.views.detect();
     },
@@ -49,29 +49,27 @@ bcr = {
 // utils need to go before everything else so we can use 'once'
 // for view listeners since it fires on page load
 bcr.utils = {
-    call: function (endpoint, options) {
+    call (endpoint, options) {
         options.method = 'POST';
-        var req = this.promise(endpoint, options);
+        const req = this.promise(endpoint, options);
         req.then(options.success, options.error);
     },
 
-    callGet: function (endpoint, options) {
+    callGet (endpoint, options) {
         options.method = 'GET';
-        var req = this.promise(endpoint, options);
+        const req = this.promise(endpoint, options);
         req.then(options.success, options.error);
     },
 
-    promise: function (endpoint, options) {
-        if (options === void 0) { options = {}; }
+    promise (endpoint, options = {}) {
+        const data = this.toKeyValue(options.data) || '';
+        const method = options.method || 'GET';
 
-        var data = this.toKeyValue(options.data) || '';
-        var method = options.method || 'GET';
-
-        return new Promise(function(resolve, reject) {
-            var req = new XMLHttpRequest();
+        return new Promise((resolve, reject) => {
+            const req = new XMLHttpRequest();
             req.open(method, endpoint);
 
-            req.onload = function() {
+            req.onload = () => {
                 if (req.status == 200) {
                     resolve(req.response);
                 }
@@ -79,7 +77,7 @@ bcr.utils = {
                     reject(Error(req.statusText));
                 }
             };
-            req.onerror = function() {
+            req.onerror = () => {
                 reject(Error("Something went wrong ... "));
             };
 
@@ -87,14 +85,14 @@ bcr.utils = {
         });
     },
 
-    toKeyValue: function (obj) {
+    toKeyValue (obj) {
         if (typeof obj !== 'object' || Object.keys(obj).length === 0) {
             return '';
         }
 
-        var qs = '';
+        let qs = '';
         for (var key in obj) {
-            var val = obj[key];
+            const val = obj[key];
 
             if (!qs.length) {
                 qs += encodeURIComponent(key) + '=' +  encodeURIComponent(val);
@@ -107,25 +105,25 @@ bcr.utils = {
         return qs;
     },
 
-    isFn: function (fnLike) {
+    isFn (fnLike) {
         return Object.prototype.toString.call(fnLike) === '[object Function]';
     },
 
-    toArray: function (arrayLike) {
-        var arr = [];
+    toArray (arrayLike) {
+        const arr = [];
 
-        for (var i = 0; i < arrayLike.length; i++) {
+        for (let i = 0; i < arrayLike.length; i++) {
             arr.push(arrayLike[i]);
         }
 
         return arr;
     },
 
-    once: function (fn, context) {
-        var result;
+    once (fn, context) {
+        let result;
 
-        return function() {
-            if(fn) {
+        return () => {
+            if (fn) {
                 result = fn.apply(context || this, arguments);
                 fn = null;
             }
@@ -137,25 +135,25 @@ bcr.utils = {
 
 // global is fired on page load regardless of what view is actually loaded
 bcr.events = {
-    global: function () {
-        $$('.view-update').forEach(function (element) {
-            element.on('click', function () {
+    global () {
+        $$('.view-update').forEach(element => {
+            element.on('click', () => {
                 bcr.views.render(this.dataset.view);
-            }, false);
+            });
         });
     },
 
-    index: bcr.utils.once(function () {
+    index: bcr.utils.once(() => {
         bcr.log('events.index');
     }, bcr.events),
 
-    about: bcr.utils.once(function () {
+    about: bcr.utils.once(() => {
         bcr.log('events.about')
     }),
 };
 
 bcr.views = {
-    detect: function () {
+    detect () {
         if (window.location.hash) {
             this.render(window.location.hash.slice(1));
         }
@@ -164,12 +162,10 @@ bcr.views = {
         }
     },
 
-    render: function (view) {
-        if (view === void 0) { view = ''; }
-
-        var options = {
+    render (view = '') {
+        const options = {
             data: { isPartial: true },
-            success: function (res) {
+            success (res) {
                 $('#view-wrapper').innerHTML = res;
 
                 if (view === '') {
@@ -180,7 +176,7 @@ bcr.views = {
                     bcr.events[view]();
                 }
             },
-            error: function (err) {
+            error (err) {
                 bcr.log(err);
             }
         };
