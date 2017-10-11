@@ -22,7 +22,8 @@ app
 .use(express.static(path.join(__dirname, 'assets')))
 .use('/', rootController)
 .use((req, res, next) => {
-    let err = new Error('Not Found');
+    const err = new Error('Not Found');
+
     err.status = 404;
     next(err);
 });
@@ -35,7 +36,8 @@ if (app.get('env') === 'development') {
     app.use((err, req, res, next) => {
         res.status(err.status || 500);
 
-        let view = err.status === 404 ? 'shared/404' : 'shared/error';
+        const view = err.status === 404 ? 'shared/404' : 'shared/error';
+
         res.render(view, {
             message: err.message,
             error: err
@@ -46,7 +48,8 @@ if (app.get('env') === 'development') {
 // production error handler
 // no stacktraces leaked to user
 app.use((err, req, res) => {
-    let view = err.status === 404 ? 'shared/404' : 'shared/error';
+    const view = err.status === 404 ? 'shared/404' : 'shared/error';
+
     res.status(err.status || 500);
     res.render(view, {
         message: err.message,
